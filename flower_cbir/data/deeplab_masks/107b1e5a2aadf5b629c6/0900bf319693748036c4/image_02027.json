@@ -1,0 +1,34 @@
+{
+  "pixel_sha256": "0900bf319693748036c4d8b8e8500307d534603fc59fce3a6946fa7cfe982751",
+  "mask_sha256": "09ce12b25f3523ff3198c837a2a97bb9ece616ba65a1c3f015a3164b30834ddf",
+  "model": {
+    "ready": true,
+    "model_id": "deeplabv3plus_384_v2_finetuned",
+    "checkpoint_sha256": "af385fb38cd1eaad9ec7dc64cfd2dd71d7f1cc4738cbd97b7fc3139be2a6398c",
+    "model_config_sha256": "40708ec5a72a52bd7bd77cd75ed7e092b59fab55c6a11aca4f4101bea59f3867",
+    "postprocessing_sha256": "ad3d5ba9c6787fb4d29feda14d2875afac534bb141154b1a3b1dcb693622fec7",
+    "postprocessing": {
+      "threshold": 0.45,
+      "opening": false,
+      "closing": false,
+      "fill_holes": true,
+      "max_hole_area": 20,
+      "keep_nearby": true,
+      "repair_center": true
+    },
+    "input_size": 384,
+    "output_size": 384,
+    "architecture": {
+      "width": 32,
+      "rates": [
+        2,
+        4,
+        6
+      ]
+    },
+    "torch": "2.9.0+cpu",
+    "device": "cpu",
+    "precision": "float32"
+  },
+  "segmentation_key": "107b1e5a2aadf5b629c6"
+}

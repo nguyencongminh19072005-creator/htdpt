@@ -1,0 +1,10 @@
+numpy==2.5.4
+opencv-python==5.0.0.93
+scipy==1.18.1
+scikit-image==0.26.0
+pandas==3.0.6
+pillow==13.0.0
+matplotlib==3.11.2
+streamlit==1.66.1
+tqdm==4.70.1
+psycopg[binary]==3.3.6

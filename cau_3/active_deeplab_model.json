@@ -1,0 +1,12 @@
+{
+  "model_id": "deeplabv3plus_384_v2_finetuned",
+  "checkpoint": "deeplabv3plus_384_v2_finetuned/best_deeplabv3plus.pt",
+  "checkpoint_sha256": "af385fb38cd1eaad9ec7dc64cfd2dd71d7f1cc4738cbd97b7fc3139be2a6398c",
+  "input_size": 384,
+  "output_size": 384,
+  "threshold": 0.45,
+  "training_masks": "fine-tuned on final_segmentation_v2 (1000 ground truth masks)",
+  "validation_mean_iou": 0.9849520993232727,
+  "heldout_mean_iou": 0.9817694800240653,
+  "note": "Active model fine-tuned on strictly final_segmentation_v2."
+}

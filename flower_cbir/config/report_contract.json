@@ -1,0 +1,40 @@
+{
+  "source_pdf": "Báo cáo lần 1 - Nhóm 9.pdf",
+  "source_sha256": "0d481c03c4d416d01f16e06a57ff3c66dc990b7b3fe56fa203f34c2fcefaa993",
+  "rules": {
+    "mask": "largest 8-connected component",
+    "Mint": "erode ellipse 5x5 once, outside=0",
+    "centroid": "mean coordinates of M",
+    "rmax": "maximum distance on Mint",
+    "F1": "float HSV, HS 12x6 row-major and V 6, separately probability-normalized",
+    "F2": "min(floor(3*rho),2) on M, ring-major Lmean Lstd amean astd bmean bstd, ddof=0, empty=0",
+    "F3": "riu2 LBP(8,1) and (16,2), whole original gray, centers in M, 10+18 bins",
+    "F4_scalars": "pixel area; external main-contour perimeter; polygon convex-hull area; minAreaRect; clipping as report",
+    "Fourier": "128 rays step .25 pixel, round coordinates, farthest sample, empty ray=0, abs FFT[1:13]/abs FFT[0]",
+    "IAP": "original gray Sobel3, relative radial gradient mod180, centered 45deg bins,4 equal-radius rings on Mint, magnitude weights, per-ring norm",
+    "IEP": "gray Gaussian5 sigma1, Canny50/150 Sobel3 L2;5 equal-radius rings on Mint; densities,slope,population CV;empty=0",
+    "segmentation": "DeepLabV3 on gallery and new query",
+    "epsilon": 1e-12
+  },
+  "pdf_pages": [
+    6,
+    10,
+    11,
+    12,
+    14,
+    16,
+    18,
+    20,
+    21,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    30,
+    31,
+    33,
+    35
+  ]
+}

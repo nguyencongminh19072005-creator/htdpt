@@ -1,0 +1,158 @@
+{
+  "pipeline_version": "3.2.0-unified-deeplabv3plus-v2",
+  "name": "flower_cbir_163d",
+  "description": "Unified DeepLabV3+ v2 and mask postprocessing for gallery and query, followed by report 1 features and normalization",
+  "image_size": [
+    384,
+    384
+  ],
+  "dataset": {
+    "image_dir": "D:\\CSDLDPT\\image_384",
+    "mask_dir": "flower_cbir/data/deeplab_masks",
+    "reviewed_mask_dir": "D:\\CSDLDPT\\final_segmentation_v2",
+    "expected_count": 1000,
+    "labels_mat": "../imagelabels.mat",
+    "label_provenance": "provisional_filename_mapping",
+    "reference_mask_dir": "D:\\CSDLDPT\\final_segmentation_v2",
+    "mask_source": "deeplabv3plus_v2_postprocessed"
+  },
+  "segmentation": {
+    "method": "deeplabv3plus_v2",
+    "initial_rect": [
+      8,
+      8,
+      368,
+      368
+    ],
+    "iter_count": 5,
+    "seed": 42,
+    "checkpoint": "D:\\CSDLDPT\\cau_3\\deeplabv3plus_384_v2_finetuned\\best_deeplabv3plus.pt",
+    "active_model_config": "D:\\CSDLDPT\\cau_3\\active_deeplab_model.json",
+    "postprocessing_path": "D:\\CSDLDPT\\cau_3\\mask_postprocessing.py",
+    "worker": "D:\\CSDLDPT\\cau_3\\cbir_deeplabv3plus_worker.py",
+    "python_executable": "C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "device": "cpu",
+    "postprocessing": {
+      "threshold": 0.45,
+      "opening": false,
+      "closing": false,
+      "fill_holes": true,
+      "max_hole_area": 20,
+      "keep_nearby": true,
+      "repair_center": true
+    }
+  },
+  "geometry": {
+    "b5_kernel_shape": "ellipse",
+    "b5_kernel_size": [
+      5,
+      5
+    ],
+    "erode_iterations": 1
+  },
+  "features": {
+    "total_dims": 163,
+    "groups": {
+      "F1": {
+        "name": "Overall Color",
+        "slice": [
+          0,
+          78
+        ],
+        "dims": 78,
+        "is_histogram": true,
+        "subgroups": {
+          "HS": [
+            0,
+            72
+          ],
+          "V": [
+            72,
+            78
+          ]
+        }
+      },
+      "F2": {
+        "name": "Color by Radius Ring (Lab)",
+        "slice": [
+          78,
+          96
+        ],
+        "dims": 18,
+        "is_histogram": false,
+        "num_rings": 3
+      },
+      "F3": {
+        "name": "Surface Texture (Multi-Radius LBP)",
+        "slice": [
+          96,
+          124
+        ],
+        "dims": 28,
+        "is_histogram": true,
+        "subgroups": {
+          "LBP8": [
+            96,
+            106
+          ],
+          "LBP16": [
+            106,
+            124
+          ]
+        }
+      },
+      "F4": {
+        "name": "Shape and Internal Structure",
+        "slice": [
+          124,
+          163
+        ],
+        "dims": 39,
+        "is_histogram": false,
+        "subgroups": {
+          "scalars": [
+            124,
+            128
+          ],
+          "fourier": [
+            128,
+            140
+          ],
+          "iap": [
+            140,
+            156
+          ],
+          "iep": [
+            156,
+            163
+          ]
+        }
+      }
+    }
+  },
+  "distance": {
+    "weights": {
+      "w1": 0.05,
+      "w2": 0.3,
+      "w3": 0.2,
+      "w4": 0.45
+    },
+    "f1_method": "hellinger_avg",
+    "f2_method": "rms_transformed",
+    "f3_method": "hellinger_avg",
+    "f4_method": "block_rms_avg"
+  },
+  "epsilon": 1e-12,
+  "preprocessing": {
+    "crop_margin": 1.1,
+    "padding_rgb": [
+      128,
+      128,
+      128
+    ],
+    "prepared_size": [
+      384,
+      384
+    ]
+  }
+}
